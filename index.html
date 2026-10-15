@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Тайный Санта</title>
+  <meta name="description" content="Регистрация в игре «Тайный Санта»: правила, анкета и жеребьёвка.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="snow" aria-hidden="true"></div>
+
+  <header class="hero">
+    <p class="eyebrow">Новогодний прогрев · декабрь</p>
+    <h1>Тайный <span>Санта</span></h1>
+    <p class="lead">Ты не узнаешь, кому дарить, — только его номер и анкету пожеланий.<br>
+      А тебе подарок приготовит кто-то из коллег. Кто — раскроется на празднике.</p>
+    <a class="btn" href="#register">Участвовать</a>
+    <dl class="facts">
+      <div><dt>Регистрация</dt><dd id="fact-reg">до&nbsp;— дата</dd></div>
+      <div><dt>Бюджет</dt><dd id="fact-budget">до&nbsp;— ₽</dd></div>
+      <div><dt>Обмен подарками</dt><dd id="fact-party">на корпоративе</dd></div>
+    </dl>
+  </header>
+
+  <main>
+    <section class="section" id="how">
+      <h2>Как это работает</h2>
+      <ol class="steps">
+        <li><b>Регистрация</b><span>Заполни анкету на этой странице в течение недели.</span></li>
+        <li><b>Жеребьёвка</b><span>Когда регистрация закроется, программа сама распределит пары.</span></li>
+        <li><b>Письмо</b><span>Придут твой номер, номер получателя и его анкета — без имени.</span></li>
+        <li><b>Подготовка</b><span>Выбери, купи или сделай подарок и подпиши номером получателя.</span></li>
+        <li><b>Обмен</b><span>В день праздника подарки раздаются, и тайное становится явным.</span></li>
+      </ol>
+    </section>
+
+    <section class="section" id="rules">
+      <h2>Правила</h2>
+      <ul class="rules">
+        <li><i>1</i><div><b>Тайна — это главное.</b> Не выясняй, кто тебе дарит, и не рассказывай, кому дарить ты. Раскрываемся только на празднике.</div></li>
+        <li><i>2</i><div><b>Бюджет.</b> Укладывайся в установленную сумму: ни дороже, ни слишком символично. Важна внимательность, а не цена.</div></li>
+        <li><i>3</i><div><b>Читай анкету.</b> Аллергии, «не дарить» и пожелания получателя обязательны к учёту — особенно если подарок съедобный.</div></li>
+        <li><i>4</i><div><b>Подпиши подарок номером.</b> Упакуй и напиши на нём номер получателя из письма. Имён на подарках быть не должно.</div></li>
+        <li><i>5</i><div><b>Сдай вовремя.</b> Подарок нужно передать до установленного срока, иначе кто-то останется без сюрприза.</div></li>
+        <li><i>6</i><div><b>Никаких обидных шуток.</b> Подарок должен радовать. Пошутить можно, но по-доброму.</div></li>
+        <li><i>7</i><div><b>Передумал участвовать?</b> Сообщи организатору как можно раньше — мы перераспределим пары.</div></li>
+      </ul>
+    </section>
+
+    <section class="section" id="register">
+      <h2>Анкета участника</h2>
+      <p class="hint">Чем подробнее анкета, тем приятнее будет подарок. Имя получатель не увидит — только остальное.</p>
+
+      <form id="form" class="card" novalidate>
+        <fieldset>
+          <legend>О тебе</legend>
+          <label class="field">Имя и фамилия
+            <input name="name" type="text" required autocomplete="name" placeholder="Анна Иванова">
+            <small>Видит только организатор.</small>
+          </label>
+          <label class="field">E-mail
+            <input name="email" type="email" required autocomplete="email" placeholder="anna@company.ru">
+            <small>Сюда придёт письмо с жеребьёвкой.</small>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Какой подарок хочется?</legend>
+          <div class="chips">
+            <label><input type="checkbox" name="kind" value="Съедобное"><span>🍫 Съедобное</span></label>
+            <label><input type="checkbox" name="kind" value="Полезное"><span>🧰 Полезное</span></label>
+            <label><input type="checkbox" name="kind" value="Для уюта"><span>🕯️ Для уюта</span></label>
+            <label><input type="checkbox" name="kind" value="Забавное"><span>🎭 Забавное</span></label>
+            <label><input type="checkbox" name="kind" value="Для хобби"><span>🎨 Для хобби</span></label>
+            <label><input type="checkbox" name="kind" value="Сюрприз"><span>🎁 Удиви меня</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Еда и ограничения</legend>
+          <div class="chips">
+            <label><input type="checkbox" name="allergy" value="Орехи"><span>Орехи</span></label>
+            <label><input type="checkbox" name="allergy" value="Цитрусовые"><span>Цитрусовые</span></label>
+            <label><input type="checkbox" name="allergy" value="Шоколад"><span>Шоколад</span></label>
+            <label><input type="checkbox" name="allergy" value="Мёд"><span>Мёд</span></label>
+            <label><input type="checkbox" name="allergy" value="Лактоза"><span>Лактоза</span></label>
+            <label><input type="checkbox" name="allergy" value="Глютен"><span>Глютен</span></label>
+            <label><input type="checkbox" name="allergy" value="Вегетарианец / веган"><span>Веган / вегетарианец</span></label>
+            <label><input type="checkbox" name="allergy" value="Не ем сладкое"><span>Не ем сладкое</span></label>
+          </div>
+          <label class="field">Другие аллергии или ограничения
+            <input name="allergy_other" type="text" placeholder="Например: аллергия на корицу">
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Подробнее о тебе</legend>
+          <label class="field">Что любишь? Хобби, увлечения, любимые цвета
+            <textarea name="likes" rows="3" placeholder="Кофе, настольные игры, зелёный цвет, походы…"></textarea>
+          </label>
+          <label class="field">Чего точно не дарить
+            <textarea name="dislikes" rows="2" placeholder="Парфюм, кружки, мягкие игрушки…"></textarea>
+          </label>
+          <label class="field">Что-то ещё, что стоит знать Санте
+            <textarea name="comment" rows="2" placeholder="Необязательно"></textarea>
+          </label>
+        </fieldset>
+
+        <label class="consent">
+          <input type="checkbox" name="consent" required>
+          <span>Я прочитал(а) правила и согласен(на) на обработку данных анкеты для проведения игры. Имя получателю не раскрывается.</span>
+        </label>
+
+        <button class="btn" type="submit">Зарегистрироваться</button>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="success card" id="success" hidden>
+        <div class="big">🎄</div>
+        <h3>Ты в игре!</h3>
+        <p>Анкета сохранена. После окончания регистрации на почту придёт твой номер и номер получателя.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">Тайный Санта · счастливых праздников 🎅</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
