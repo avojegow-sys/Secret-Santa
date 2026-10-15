@@ -7,26 +7,123 @@
   <meta name="description" content="Регистрация в игре «Тайный Санта»: правила, анкета и жеребьёвка.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="scene" aria-hidden="true"></canvas>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="santa-head">
+        <path d="M98 285 Q110 215 175 232 Q160 250 182 285 Z" fill="url(#g-red)"/>
+        <rect x="94" y="276" width="92" height="22" rx="11" fill="url(#g-snow)"/>
+        <circle cx="178" cy="232" r="11" fill="url(#g-snow)"/>
+        <circle cx="140" cy="312" r="40" fill="#f6c3a4"/>
+        <path d="M98 305 Q100 372 140 378 Q180 372 182 305 Q160 338 140 338 Q120 338 98 305Z" fill="url(#g-snow)"/>
+        <ellipse cx="127" cy="322" rx="15" ry="9" fill="url(#g-snow)"/>
+        <ellipse cx="153" cy="322" rx="15" ry="9" fill="url(#g-snow)"/>
+        <circle cx="140" cy="311" r="7" fill="#f08a7a"/>
+        <circle cx="126" cy="298" r="3.5" fill="#2a1a15"/>
+        <circle cx="154" cy="298" r="3.5" fill="#2a1a15"/>
+      </g>
+    </defs>
+  </svg>
 
   <div class="wrap">
     <header class="hero">
-      <div class="sign">
-        <span class="santa badge" aria-hidden="true"></span>
-        <p class="eyebrow">Новогодний прогрев · декабрь</p>
-        <h1><span>Тайный</span> <em>Санта</em></h1>
-        <p class="lead">Ты не узнаешь, кому дарить, — только его номер и анкету пожеланий. А тебе подарок приготовит кто-то из коллег. Кто — раскроется на празднике.</p>
+      <div class="hero-text">
+        <p class="eyebrow">Новогодний прогрев</p>
+        <h1><span>Тайный</span> <span>Санта</span></h1>
+        <p class="lead">Ты не узнаешь, кому дарить, только его номер и анкету пожеланий. А тебе подарок приготовит кто-то из коллег. Кто именно, раскроется на празднике.</p>
         <a class="btn" href="#register">Участвовать</a>
+        <dl class="facts">
+          <div class="board"><dt>Регистрация</dt><dd id="fact-reg">до даты</dd></div>
+          <div class="board"><dt>Бюджет</dt><dd id="fact-budget">до суммы</dd></div>
+          <div class="board"><dt>Обмен подарками</dt><dd id="fact-party">на корпоративе</dd></div>
+        </dl>
       </div>
-      <dl class="facts">
-        <div class="board"><dt>Регистрация</dt><dd id="fact-reg">до даты</dd></div>
-        <div class="board"><dt>Бюджет</dt><dd id="fact-budget">до суммы</dd></div>
-        <div class="board"><dt>Обмен подарками</dt><dd id="fact-party">на корпоративе</dd></div>
-      </dl>
+
+      <svg class="scene" viewBox="0 0 520 470" role="img" aria-label="Ёлка, снеговики и Санта с подарками">
+        <defs>
+          <radialGradient id="g-snow" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d6e0ec"/></radialGradient>
+          <linearGradient id="g-tree" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a3c866"/><stop offset="1" stop-color="#4a7a2b"/></linearGradient>
+          <linearGradient id="g-red" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f04e43"/><stop offset="1" stop-color="#b3281f"/></linearGradient>
+          <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe28f"/><stop offset="1" stop-color="#cf8d1d"/></linearGradient>
+          <radialGradient id="g-ball-r" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ff8074"/><stop offset="1" stop-color="#a21d18"/></radialGradient>
+          <radialGradient id="g-ball-g" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#6fd07c"/><stop offset="1" stop-color="#1c6a2d"/></radialGradient>
+          <radialGradient id="g-ball-s" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#9aa6b5"/></radialGradient>
+        </defs>
+
+        <ellipse cx="270" cy="452" rx="235" ry="14" fill="#5a140a" opacity=".25"/>
+
+        <!-- снеговик слева в колпаке -->
+        <circle cx="190" cy="275" r="72" fill="url(#g-snow)"/>
+        <path d="M150 262 L98 236" stroke="#6b4a2a" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <circle cx="200" cy="152" r="46" fill="url(#g-snow)"/>
+        <path d="M166 130 Q192 66 244 90 Q230 106 240 130 Z" fill="url(#g-red)"/>
+        <rect x="160" y="124" width="86" height="20" rx="10" fill="url(#g-snow)"/>
+        <circle cx="244" cy="90" r="11" fill="url(#g-snow)"/>
+        <circle cx="186" cy="152" r="4.5" fill="#2a1a15"/><circle cx="214" cy="152" r="4.5" fill="#2a1a15"/>
+        <polygon points="196,160 222,168 196,173" fill="#ff8a2b"/>
+        <circle cx="178" cy="166" r="6" fill="#ff9d8c" opacity=".5"/><circle cx="224" cy="178" r="0" fill="none"/>
+        <rect x="160" y="192" width="86" height="18" rx="9" fill="url(#g-snow)"/>
+        <rect x="172" y="192" width="10" height="18" fill="#d63a2f"/><rect x="196" y="192" width="10" height="18" fill="#d63a2f"/><rect x="220" y="192" width="10" height="18" fill="#d63a2f"/>
+
+        <!-- снеговик справа в колпаке-конусе -->
+        <circle cx="425" cy="295" r="58" fill="url(#g-snow)"/>
+        <path d="M470 290 L510 266" stroke="#6b4a2a" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <circle cx="412" cy="208" r="38" fill="url(#g-snow)"/>
+        <polygon points="384,184 414,108 442,186" fill="url(#g-red)"/>
+        <path d="M386 174 L442 174 L444 190 L384 190 Z" fill="#2e7d3a"/>
+        <circle cx="400" cy="206" r="4" fill="#2a1a15"/><circle cx="424" cy="206" r="4" fill="#2a1a15"/>
+        <polygon points="405,214 430,219 405,224" fill="#ff8a2b"/>
+        <rect x="382" y="238" width="72" height="16" rx="8" fill="url(#g-snow)"/>
+        <rect x="394" y="238" width="9" height="16" fill="#d63a2f"/><rect x="416" y="238" width="9" height="16" fill="#d63a2f"/><rect x="438" y="238" width="9" height="16" fill="#d63a2f"/>
+
+        <!-- снеговик внизу справа в цилиндре -->
+        <circle cx="445" cy="395" r="62" fill="url(#g-snow)"/>
+        <circle cx="432" cy="325" r="40" fill="url(#g-snow)"/>
+        <rect x="400" y="268" width="64" height="38" rx="4" fill="#202026"/>
+        <ellipse cx="432" cy="306" rx="46" ry="8" fill="#202026"/>
+        <rect x="400" y="291" width="64" height="9" fill="#2e7d3a"/>
+        <circle cx="420" cy="328" r="4" fill="#2a1a15"/><circle cx="444" cy="328" r="4" fill="#2a1a15"/>
+        <polygon points="425,336 450,341 425,346" fill="#ff8a2b"/>
+        <rect x="398" y="358" width="68" height="16" rx="8" fill="#2e8a47"/>
+        <rect x="410" y="358" width="9" height="16" fill="#1f6a35"/><rect x="432" y="358" width="9" height="16" fill="#1f6a35"/><rect x="454" y="358" width="9" height="16" fill="#1f6a35"/>
+
+        <!-- ёлка -->
+        <rect x="284" y="400" width="32" height="42" rx="4" fill="#8a5a36"/>
+        <path d="M300 230 C340 230 395 360 412 392 Q300 428 188 392 C205 360 260 230 300 230Z" fill="url(#g-tree)"/>
+        <path d="M300 150 C330 150 366 260 380 288 Q300 318 220 288 C234 260 270 150 300 150Z" fill="url(#g-tree)"/>
+        <path d="M300 82 C320 82 346 170 353 192 Q300 218 247 192 C254 170 280 82 300 82Z" fill="url(#g-tree)"/>
+        <path d="M252 190 Q300 210 350 184 M232 282 Q300 306 366 276 M204 384 Q300 414 398 380" stroke="url(#g-gold)" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <polygon points="300,42 305.3,56.7 320.9,57.2 308.6,66.8 312.9,81.8 300,73 287.1,81.8 291.4,66.8 279.1,57.2 294.7,56.7" fill="url(#g-gold)"/>
+        <circle cx="272" cy="254" r="10" fill="url(#g-ball-r)"/>
+        <circle cx="334" cy="248" r="9" fill="url(#g-ball-g)"/>
+        <circle cx="262" cy="350" r="10" fill="url(#g-ball-s)"/>
+        <circle cx="336" cy="346" r="11" fill="url(#g-ball-r)"/>
+        <circle cx="300" cy="318" r="9" fill="url(#g-ball-g)"/>
+        <circle cx="300" cy="190" r="8" fill="url(#g-ball-r)"/>
+        <path d="M280 128 q12 -14 24 0 v16 h-24z M304 132 q10 -12 20 0 v14 h-20z" fill="url(#g-gold)"/>
+        <circle cx="292" cy="148" r="3" fill="#8a5a1a"/><circle cx="314" cy="150" r="3" fill="#8a5a1a"/>
+
+        <!-- Санта -->
+        <ellipse cx="140" cy="392" rx="56" ry="60" fill="url(#g-red)"/>
+        <path d="M96 385 Q60 385 44 362" stroke="#d63a2f" stroke-width="26" stroke-linecap="round" fill="none"/>
+        <circle cx="40" cy="358" r="14" fill="#202026"/>
+        <rect x="86" y="386" width="108" height="14" fill="#202026"/>
+        <rect x="127" y="383" width="26" height="20" rx="3" fill="url(#g-gold)"/>
+        <rect x="104" y="436" width="32" height="20" rx="7" fill="#202026"/>
+        <rect x="146" y="436" width="32" height="20" rx="7" fill="#202026"/>
+        <use href="#santa-head"/>
+
+        <!-- подарки -->
+        <g>
+          <rect x="305" y="406" width="54" height="46" rx="3" fill="#d63a2f"/><rect x="327" y="406" width="10" height="46" fill="#3fa05a"/><rect x="305" y="424" width="54" height="9" fill="#3fa05a"/>
+          <rect x="368" y="418" width="42" height="34" rx="3" fill="#fff4e6"/><rect x="384" y="418" width="9" height="34" fill="url(#g-gold)"/><rect x="368" y="430" width="42" height="8" fill="url(#g-gold)"/>
+          <rect x="212" y="414" width="48" height="38" rx="3" fill="#3fa05a"/><rect x="232" y="414" width="9" height="38" fill="#d63a2f"/><rect x="212" y="428" width="48" height="8" fill="#d63a2f"/>
+          <rect x="262" y="426" width="38" height="26" rx="3" fill="#4a9bd6"/><rect x="277" y="426" width="8" height="26" fill="#ffe28f"/><rect x="262" y="435" width="38" height="7" fill="#ffe28f"/>
+        </g>
+      </svg>
     </header>
 
     <main>
@@ -123,7 +220,7 @@
         </form>
 
         <div class="success parch panel" id="success" hidden>
-          <span class="santa big" aria-hidden="true"></span>
+          <svg class="face" viewBox="88 220 104 162" aria-hidden="true"><use href="#santa-head"/></svg>
           <h3>Ты в игре!</h3>
           <p>Анкета сохранена. После окончания регистрации на почту придёт твой номер и номер получателя.</p>
         </div>
@@ -133,7 +230,6 @@
     <footer class="footer">Тайный Санта · счастливых праздников</footer>
   </div>
 
-  <script src="scene.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

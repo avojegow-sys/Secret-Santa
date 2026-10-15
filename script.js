@@ -8,26 +8,6 @@ const EVENT = {
 // Адрес бэкенда. Если пусто — демо-режим (данные не отправляются).
 const API_URL = "/api/register";
 
-// Пиксельный Санта: r — шапка, w — борода, s — лицо, k — глаза, n — нос
-const SANTA = [
-  "...rrrrr...",
-  "..rrrrrrw..",
-  ".rrrrrrrrw.",
-  "wwwwwwwwwww",
-  ".wsssssssw.",
-  ".wsksssksw.",
-  ".wsssnsssw.",
-  "wwwwwwwwwww",
-  "wwwwwwwwwww",
-  ".wwwwwwwww.",
-  "..wwwwwww..",
-];
-const SANTA_COLORS = { r: "#d62839", w: "#f4f4ff", s: "#f2b48a", k: "#1a1a2e", n: "#e08a6a" };
-const santaSvg = `<svg viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg">${SANTA.map((row, y) =>
-  [...row].map((c, x) => (c === "." ? "" : `<rect x="${x}" y="${y}" width="1" height="1" fill="${SANTA_COLORS[c]}"/>`)).join("")
-).join("")}</svg>`;
-document.querySelectorAll(".santa").forEach((el) => { el.innerHTML = santaSvg; });
-
 document.getElementById("fact-reg").textContent = EVENT.registrationUntil;
 document.getElementById("fact-budget").textContent = EVENT.budget;
 document.getElementById("fact-party").textContent = EVENT.party;
