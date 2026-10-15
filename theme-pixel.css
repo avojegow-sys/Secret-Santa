@@ -199,3 +199,5 @@ html[data-theme="pixel"] .steps li + li { border-top-color: rgba(0, 0, 0, .25); 
 html[data-theme="pixel"] .scene, html[data-theme="pixel"] .success .face { display: none; }
 html[data-theme="pixel"] #scene { display: block; }
 html[data-theme="pixel"] .santa { display: inline-block; }
+
+html[data-theme="pixel"] .cta { justify-content: center; }

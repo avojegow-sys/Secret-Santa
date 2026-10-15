@@ -189,3 +189,8 @@ input:focus, textarea:focus { outline: none; border-color: var(--green); box-sha
 .theme-switch small { font-weight: 600; opacity: .7; }
 .theme-switch:hover { background: rgba(30, 12, 8, .88); }
 .theme-switch:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+/* Элементы темы «Океан» скрыты в остальных темах */
+.only-ocean, .scene-ocean, .ocean-bg, .ico, .topbar { display: none; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+html:not([data-theme="ocean"]) .only-ocean, html:not([data-theme="ocean"]) .topbar { display: none !important; }

@@ -7,13 +7,46 @@
   <meta name="description" content="Регистрация в игре «Тайный Санта»: правила, анкета и жеребьёвка.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Manrope:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Lobster&family=Manrope:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="theme-pixel.css">
-  <script>try{document.documentElement.dataset.theme=localStorage.getItem("santa-theme")==="pixel"?"pixel":"party"}catch(e){document.documentElement.dataset.theme="party"}</script>
+  <link rel="stylesheet" href="theme-ocean.css">
+  <script>try{document.documentElement.dataset.theme=(function(t){return t==="pixel"||t==="ocean"?t:"party"})(localStorage.getItem("santa-theme"))}catch(e){document.documentElement.dataset.theme="party"}</script>
 </head>
 <body>
   <canvas id="scene" aria-hidden="true"></canvas>
+
+  <div class="ocean-bg" aria-hidden="true">
+    <div class="glow"></div>
+    <div class="rays"></div>
+    <div class="bubbles" id="bubbles"></div>
+    <svg class="coral" viewBox="0 0 1200 260" preserveAspectRatio="xMidYMax slice">
+      <defs><linearGradient id="o-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#06284a" stop-opacity="0"/><stop offset="1" stop-color="#010a14"/></linearGradient></defs>
+      <rect width="1200" height="260" fill="url(#o-sea)"/>
+      <g fill="none" stroke="#0a3a63" stroke-width="5" stroke-linecap="round" opacity=".55">
+        <path d="M120 260 V190 M120 215 L96 190 M120 200 L146 172 M146 172 V150"/>
+        <path d="M980 260 V180 M980 210 L950 176 M980 195 L1012 160 M1012 160 V134 M950 176 V152"/>
+        <path d="M300 260 V210 M300 228 L282 206 M300 218 L322 196"/>
+        <path d="M720 260 V215 M720 232 L702 208 M720 224 L744 200"/>
+        <path d="M1110 260 V200 M1110 224 L1088 198 M1110 210 L1134 186"/>
+      </g>
+      <path d="M0 260 V222 Q60 196 130 214 Q190 230 250 232 L250 260Z M900 260 V226 Q960 205 1030 222 Q1110 240 1200 214 V260Z" fill="#021022"/>
+      <path d="M0 232 C150 215 220 250 420 238 S760 226 900 240 S1120 232 1200 236" fill="none" stroke="#f2c46b" stroke-opacity=".5" stroke-width="1.2"/>
+      <g fill="#ffe6a3">
+        <circle cx="60" cy="226" r="3"/><circle cx="150" cy="222" r="3"/><circle cx="270" cy="244" r="3"/><circle cx="420" cy="238" r="3"/>
+        <circle cx="620" cy="228" r="3"/><circle cx="800" cy="236" r="3"/><circle cx="1040" cy="234" r="3"/><circle cx="1150" cy="226" r="3"/>
+      </g>
+      <g fill="#ffe6a3" opacity=".25">
+        <circle cx="60" cy="226" r="9"/><circle cx="150" cy="222" r="9"/><circle cx="270" cy="244" r="9"/><circle cx="420" cy="238" r="9"/>
+        <circle cx="620" cy="228" r="9"/><circle cx="800" cy="236" r="9"/><circle cx="1040" cy="234" r="9"/><circle cx="1150" cy="226" r="9"/>
+      </g>
+    </svg>
+  </div>
+
+  <nav class="topbar only-ocean" aria-label="Разделы">
+    <a class="brand" href="#top">Тайный Санта</a>
+    <span class="links"><a href="#how">Как это работает</a><a href="#rules">Правила</a><a href="#register">Анкета</a></span>
+  </nav>
 
   <button class="theme-switch" id="theme-switch" type="button" hidden></button>
 
@@ -34,14 +67,21 @@
     </defs>
   </svg>
 
-  <div class="wrap">
+  <div class="wrap" id="top">
     <header class="hero">
       <div class="hero-text">
         <span class="santa badge" aria-hidden="true"></span>
-        <p class="eyebrow">Новогодний прогрев</p>
-        <h1><span>Тайный</span> <span>Санта</span></h1>
-        <p class="lead">Ты не узнаешь, кому дарить, только его номер и анкету пожеланий. А тебе подарок приготовит кто-то из коллег. Кто именно, раскроется на празднике.</p>
-        <a class="btn" href="#register">Участвовать</a>
+        <p class="eyebrow skip-ocean">Новогодний прогрев</p>
+        <p class="eyebrow only-ocean">Гидролокатор подарков</p>
+        <p class="mission only-ocean">Новогодняя миссия команды</p>
+        <h1 class="skip-ocean"><span>Тайный</span> <span>Санта</span></h1>
+        <h1 class="only-ocean">Подарок найден.<br>Санта засекречен.</h1>
+        <p class="lead skip-ocean">Ты не узнаешь, кому дарить, только его номер и анкету пожеланий. А тебе подарок приготовит кто-то из коллег. Кто именно, раскроется на празднике.</p>
+        <p class="lead only-ocean">Находим своего получателя и отправляем ему праздничный сигнал заботы. Кому дарить, ты узнаешь из письма, а кто дарит тебе, раскроется на празднике.</p>
+        <div class="cta">
+          <a class="btn" href="#register"><span class="skip-ocean">Участвовать</span><span class="only-ocean">Начать миссию →</span></a>
+          <a class="btn ghost only-ocean" href="#how">Как это работает</a>
+        </div>
         <dl class="facts">
           <div class="board"><dt>Регистрация</dt><dd id="fact-reg">до даты</dd></div>
           <div class="board"><dt>Бюджет</dt><dd id="fact-budget">до суммы</dd></div>
@@ -131,17 +171,70 @@
           <rect x="262" y="426" width="38" height="26" rx="3" fill="#4a9bd6"/><rect x="277" y="426" width="8" height="26" fill="#ffe28f"/><rect x="262" y="435" width="38" height="7" fill="#ffe28f"/>
         </g>
       </svg>
+
+      <svg class="scene-ocean" viewBox="0 0 520 470" role="img" aria-label="Светящийся подарок под водой">
+        <defs>
+          <radialGradient id="o-halo" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#5fd8ff" stop-opacity=".45"/><stop offset="1" stop-color="#5fd8ff" stop-opacity="0"/></radialGradient>
+          <linearGradient id="o-top" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9e6ff"/></linearGradient>
+          <linearGradient id="o-left" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e3ebff"/><stop offset="1" stop-color="#9db6ea"/></linearGradient>
+          <linearGradient id="o-right" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2eeff"/><stop offset="1" stop-color="#9fd2f0"/></linearGradient>
+          <linearGradient id="o-rib" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7ae3e0"/><stop offset="1" stop-color="#1d8f9c"/></linearGradient>
+          <linearGradient id="o-gold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe9a8"/><stop offset="1" stop-color="#d69a2e"/></linearGradient>
+        </defs>
+        <circle cx="260" cy="230" r="230" fill="url(#o-halo)"/>
+        <g fill="none" stroke="#7fdcff">
+          <circle cx="260" cy="230" r="196" stroke-opacity=".32"/>
+          <circle cx="260" cy="230" r="166" stroke-opacity=".2" stroke-dasharray="3 7"/>
+          <circle class="spin" cx="260" cy="230" r="215" stroke-opacity=".16"/>
+        </g>
+        <g class="float">
+          <g transform="translate(-69 -65) scale(1.25)">
+          <g>
+            <polygon points="275,255 370,205 370,325 275,375" fill="url(#o-right)"/>
+            <polygon points="180,210 275,255 275,375 180,330" fill="url(#o-left)"/>
+            <polygon points="180,210 275,160 370,205 275,255" fill="url(#o-top)"/>
+            <polygon points="312,236 333,224 333,344 312,356" fill="url(#o-rib)"/>
+            <polygon points="216.6,227.3 238.4,237.7 238.4,357.7 216.6,347.3" fill="url(#o-rib)"/>
+            <polygon points="217,190.6 238,179.4 333,224 312,236" fill="url(#o-rib)"/>
+            <polygon points="216.6,227.3 238.4,237.7 333.4,187.7 311.6,177.3" fill="url(#o-rib)" opacity=".92"/>
+            <g fill="none" stroke="#bfefff" stroke-opacity=".35" stroke-width="1">
+              <path d="M190 250 q30 20 60 6 M300 290 q30 -10 55 -40 M200 300 q40 20 60 -10"/>
+            </g>
+          </g>
+          <g>
+            <ellipse cx="232" cy="176" rx="42" ry="21" transform="rotate(-24 232 176)" fill="url(#o-rib)"/>
+            <ellipse cx="318" cy="172" rx="42" ry="21" transform="rotate(24 318 172)" fill="url(#o-rib)"/>
+            <path d="M232 176 q28 4 40 20 M318 172 q-28 6 -42 22" stroke="#1d8f9c" stroke-width="2" fill="none" opacity=".6"/>
+            <circle cx="275" cy="190" r="14" fill="#4fc7cf"/>
+            <path d="M285 200 C360 180 400 250 440 238 C470 230 480 205 492 215" fill="none" stroke="url(#o-rib)" stroke-width="12" stroke-linecap="round" opacity=".9"/>
+            <path d="M265 200 C190 190 150 250 105 236 C85 230 76 220 66 226" fill="none" stroke="url(#o-rib)" stroke-width="12" stroke-linecap="round" opacity=".9"/>
+          </g>
+          </g>
+        </g>
+        <g fill="url(#o-gold)">
+          <polygon points="86,92 92,106 108,107 96,117 100,132 86,124 72,132 76,117 64,107 80,106" transform="translate(10 -20)"/>
+          <polygon points="456,282 460,292 471,293 463,300 466,311 456,305 446,311 449,300 441,293 452,292" transform="translate(10 10)"/>
+          <polygon points="210,408 215,420 228,421 218,429 222,441 210,434 198,441 202,429 192,421 205,420"/>
+        </g>
+        <g fill="none" stroke="#cfeeff" stroke-opacity=".7">
+          <circle cx="66" cy="196" r="6"/><circle cx="388" cy="108" r="8"/><circle cx="470" cy="190" r="5"/><circle cx="130" cy="336" r="7"/><circle cx="408" cy="396" r="5"/>
+        </g>
+        <circle cx="452" cy="378" r="26" fill="rgba(190,230,255,.12)" stroke="#cfeeff" stroke-opacity=".8" stroke-width="1.5"/>
+        <g stroke="#e8f8ff" stroke-width="1.5" stroke-linecap="round"><path d="M452 362 v32 M438 370 l28 16 M466 370 l-28 16"/></g>
+        <line x1="470" y1="64" x2="494" y2="40" stroke="#7fdcff" stroke-opacity=".6"/>
+        <circle cx="470" cy="64" r="3.5" fill="#7fdcff"/>
+      </svg>
     </header>
 
     <main>
       <section class="section" id="how">
         <h2 class="plaque">Как это работает</h2>
         <ol class="steps board">
-          <li><b>Регистрация</b><span>Заполни анкету на этой странице в течение недели.</span></li>
-          <li><b>Жеребьёвка</b><span>Когда регистрация закроется, программа сама распределит пары.</span></li>
-          <li><b>Письмо</b><span>Придут твой номер, номер получателя и его анкета без имени.</span></li>
-          <li><b>Подготовка</b><span>Выбери, купи или сделай подарок и подпиши номером получателя.</span></li>
-          <li><b>Обмен</b><span>В день праздника подарки раздаются, и тайное становится явным.</span></li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v5M6 3v17h6M9 9h6M9 13h3"/><path d="M14 21l1-3.500 5.500-5.500 2.500 2.500-5.500 5.500z"/></svg></span><b>Регистрация</b><span>Заполни анкету на этой странице в течение недели.</span></li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h4l10 10h4M3 17h4l3-3M14 10l3-3h4"/><path d="M19 5l2 2-2 2M19 15l2 2-2 2"/></svg></span><b>Жеребьёвка</b><span>Когда регистрация закроется, программа сама распределит пары.</span></li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><b>Письмо</b><span>Придут твой номер, номер получателя и его анкета без имени.</span></li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="1"/><path d="M12 10v10M3 10h18M12 10C10 5 6 6 7.500 9c.5 1 4.500 1 4.500 1zM12 10c2-5 6-4 4.500-1-.5 1-4.500 1-4.500 1z"/></svg></span><b>Подготовка</b><span>Выбери, купи или сделай подарок и подпиши номером получателя.</span></li>
+          <li><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.500-7-10a4 4 0 0 1 7-2.500A4 4 0 0 1 19 10c0 5.500-7 10-7 10z"/></svg></span><b>Обмен</b><span>В день праздника подарки раздаются, и тайное становится явным.</span></li>
         </ol>
       </section>
 

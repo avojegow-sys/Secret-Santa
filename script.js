@@ -23,14 +23,26 @@ const santaSvg = `<svg viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg">${
 ).join("")}</svg>`;
 document.querySelectorAll(".santa").forEach((el) => { el.innerHTML = santaSvg; });
 
-const THEME_NAMES = { party: "Праздник", pixel: "Пиксели" };
+const THEME_ORDER = ["party", "pixel", "ocean"];
+const THEME_NAMES = { party: "Праздник", pixel: "Пиксели", ocean: "Океан" };
 const switchBtn = document.getElementById("theme-switch");
+
+// Пузырьки для темы «Океан»
+const bubbleBox = document.getElementById("bubbles");
+if (bubbleBox) {
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement("span");
+    const size = 6 + Math.random() * 18;
+    b.style.cssText = `left:${Math.random() * 100}%;width:${size}px;height:${size}px;animation-duration:${9 + Math.random() * 11}s;animation-delay:-${Math.random() * 18}s`;
+    bubbleBox.appendChild(b);
+  }
+}
 
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   try { localStorage.setItem("santa-theme", theme); } catch (e) {}
   if (window.pixelScene) theme === "pixel" ? window.pixelScene.start() : window.pixelScene.stop();
-  const next = theme === "pixel" ? "party" : "pixel";
+  const next = THEME_ORDER[(THEME_ORDER.indexOf(theme) + 1) % THEME_ORDER.length];
   switchBtn.innerHTML = `Дизайн: ${THEME_NAMES[next]} <small>демо</small>`;
   switchBtn.dataset.next = next;
 }
@@ -38,7 +50,8 @@ function applyTheme(theme) {
 if (THEME_SWITCHER) {
   switchBtn.hidden = false;
   switchBtn.addEventListener("click", () => applyTheme(switchBtn.dataset.next));
-  applyTheme(document.documentElement.dataset.theme === "pixel" ? "pixel" : DEFAULT_THEME === "pixel" ? "pixel" : "party");
+  const saved = document.documentElement.dataset.theme;
+  applyTheme(THEME_ORDER.includes(saved) ? saved : DEFAULT_THEME);
 } else {
   applyTheme(DEFAULT_THEME);
 }
