@@ -17,7 +17,7 @@
   --cream: #ffe9b0;
   --px: 4px;
   --font-pixel: "Press Start 2P", "Courier New", monospace;
-  --font-body: "Pixelify Sans", "Courier New", monospace;
+  --font-body: "Manrope", system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -26,8 +26,8 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.45;
+  font-size: 17px;
+  line-height: 1.5;
   color: var(--cream);
   background: var(--night);
   min-height: 100vh;

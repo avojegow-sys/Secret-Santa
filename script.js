@@ -1,6 +1,6 @@
 // Настройки события — поменяй под себя
 const EVENT = {
-  registrationUntil: "до 22 декабря",
+  registrationUntil: "до 22 ноября",
   budget: "до 1 500 ₽",
   party: "на корпоративе",
 };
