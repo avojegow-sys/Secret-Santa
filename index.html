@@ -7,10 +7,16 @@
   <meta name="description" content="Регистрация в игре «Тайный Санта»: правила, анкета и жеребьёвка.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Manrope:wght@400;600;800&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theme-pixel.css">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem("santa-theme")==="pixel"?"pixel":"party"}catch(e){document.documentElement.dataset.theme="party"}</script>
 </head>
 <body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+  <button class="theme-switch" id="theme-switch" type="button" hidden></button>
+
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <defs>
       <g id="santa-head">
@@ -31,6 +37,7 @@
   <div class="wrap">
     <header class="hero">
       <div class="hero-text">
+        <span class="santa badge" aria-hidden="true"></span>
         <p class="eyebrow">Новогодний прогрев</p>
         <h1><span>Тайный</span> <span>Санта</span></h1>
         <p class="lead">Ты не узнаешь, кому дарить, только его номер и анкету пожеланий. А тебе подарок приготовит кто-то из коллег. Кто именно, раскроется на празднике.</p>
@@ -221,6 +228,7 @@
 
         <div class="success parch panel" id="success" hidden>
           <svg class="face" viewBox="88 220 104 162" aria-hidden="true"><use href="#santa-head"/></svg>
+          <span class="santa big" aria-hidden="true"></span>
           <h3>Ты в игре!</h3>
           <p>Анкета сохранена. После окончания регистрации на почту придёт твой номер и номер получателя.</p>
         </div>
@@ -230,6 +238,7 @@
     <footer class="footer">Тайный Санта · счастливых праздников</footer>
   </div>
 
+  <script src="scene.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
