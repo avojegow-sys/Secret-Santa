@@ -21,22 +21,31 @@ function shuffle(list) {
   return a;
 }
 
-// Один большой круг: каждый дарит следующему, последний — первому.
-// Никто не достаётся сам себе и нет взаимных пар. Номера выдаются в случайном порядке.
+// Полностью случайное распределение: каждый дарит одному человеку и получает ровно один подарок.
+// Исключены подарок самому себе и взаимный обмен парами (A дарит B, а B дарит A).
+// Номера выдаются отдельной случайной перестановкой, поэтому по номеру ничего не угадать.
 function makePairs(emails) {
-  if (emails.length < 3) throw new Error("Нужно минимум 3 участника");
-  const order = shuffle(emails);
-  const result = {};
-  order.forEach((email, i) => {
-    const next = (i + 1) % order.length;
-    result[email] = {
-      number: i + 1,
-      targetEmail: order[next],
-      targetNumber: next + 1,
-      sent: false,
-    };
-  });
-  return result;
+  const n = emails.length;
+  if (n < 3) throw new Error("Нужно минимум 3 участника");
+
+  const numbered = shuffle(emails);
+  const numberOf = {};
+  numbered.forEach((email, i) => { numberOf[email] = i + 1; });
+
+  for (let attempt = 0; attempt < 100000; attempt++) {
+    const targets = shuffle(emails);
+    const target = {};
+    emails.forEach((email, i) => { target[email] = targets[i]; });
+    const ok = emails.every((g) => target[g] !== g && target[target[g]] !== g);
+    if (!ok) continue;
+
+    const result = {};
+    emails.forEach((g) => {
+      result[g] = { number: numberOf[g], targetEmail: target[g], targetNumber: numberOf[target[g]], sent: false };
+    });
+    return result;
+  }
+  throw new Error("Не удалось подобрать распределение");
 }
 
 const esc = (s) =>
@@ -66,7 +75,7 @@ function assignmentMail(me, target, number, targetNumber) {
   const info = [
     e.BUDGET && `Бюджет: ${e.BUDGET}`,
     e.GIFT_DEADLINE && `Сдать подарок до: ${e.GIFT_DEADLINE}`,
-    e.PARTY_DATE && `Обмен подарками: ${e.PARTY_DATE}`,
+    e.PARTY_DATE && `Вручение подарков: ${e.PARTY_DATE}`,
   ].filter(Boolean);
 
   const html = `<!doctype html><html lang="ru"><body style="margin:0;background:#0d1240;padding:24px;font-family:Arial,sans-serif">
@@ -89,7 +98,7 @@ function assignmentMail(me, target, number, targetNumber) {
   <ul style="margin:0;padding-left:20px">
     ${info.map((i) => `<li>${esc(i)}</li>`).join("")}
     <li>Упакуй подарок и напиши на нём <b>номер ${targetNumber}</b>. Имён на подарках быть не должно.</li>
-    <li>Никому не говори, кому дарить ты. Тайна раскроется на празднике.</li>
+    <li>Никому не говори, кому дарить ты.</li>
   </ul>
   <p style="margin:20px 0 0;color:#7a6446;font-size:13px">Если передумал участвовать, сообщи организатору как можно раньше.</p>
 </div></body></html>`;

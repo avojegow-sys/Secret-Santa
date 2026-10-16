@@ -8,54 +8,6 @@ const EVENT = {
 // Адрес бэкенда. Если пусто — демо-режим (данные не отправляются).
 const API_URL = "/api/register";
 
-// Переключатель дизайна нужен только для демо. Поставь false, чтобы убрать кнопку и оставить тему по умолчанию.
-const THEME_SWITCHER = true;
-const DEFAULT_THEME = "party";
-
-// Пиксельный Санта для темы «Пиксели»: r — шапка, w — борода, s — лицо, k — глаза, n — нос
-const SANTA = [
-  "...rrrrr...", "..rrrrrrw..", ".rrrrrrrrw.", "wwwwwwwwwww", ".wsssssssw.", ".wsksssksw.",
-  ".wsssnsssw.", "wwwwwwwwwww", "wwwwwwwwwww", ".wwwwwwwww.", "..wwwwwww..",
-];
-const SANTA_COLORS = { r: "#d62839", w: "#f4f4ff", s: "#f2b48a", k: "#1a1a2e", n: "#e08a6a" };
-const santaSvg = `<svg viewBox="0 0 11 11" xmlns="http://www.w3.org/2000/svg">${SANTA.map((row, y) =>
-  [...row].map((c, x) => (c === "." ? "" : `<rect x="${x}" y="${y}" width="1" height="1" fill="${SANTA_COLORS[c]}"/>`)).join("")
-).join("")}</svg>`;
-document.querySelectorAll(".santa").forEach((el) => { el.innerHTML = santaSvg; });
-
-const THEME_ORDER = ["party", "pixel", "ocean"];
-const THEME_NAMES = { party: "Праздник", pixel: "Пиксели", ocean: "Океан" };
-const switchBtn = document.getElementById("theme-switch");
-
-// Пузырьки для темы «Океан»
-const bubbleBox = document.getElementById("bubbles");
-if (bubbleBox) {
-  for (let i = 0; i < 18; i++) {
-    const b = document.createElement("span");
-    const size = 6 + Math.random() * 18;
-    b.style.cssText = `left:${Math.random() * 100}%;width:${size}px;height:${size}px;animation-duration:${9 + Math.random() * 11}s;animation-delay:-${Math.random() * 18}s`;
-    bubbleBox.appendChild(b);
-  }
-}
-
-function applyTheme(theme) {
-  document.documentElement.dataset.theme = theme;
-  try { localStorage.setItem("santa-theme", theme); } catch (e) {}
-  if (window.pixelScene) theme === "pixel" ? window.pixelScene.start() : window.pixelScene.stop();
-  const next = THEME_ORDER[(THEME_ORDER.indexOf(theme) + 1) % THEME_ORDER.length];
-  switchBtn.innerHTML = `Дизайн: ${THEME_NAMES[next]} <small>демо</small>`;
-  switchBtn.dataset.next = next;
-}
-
-if (THEME_SWITCHER) {
-  switchBtn.hidden = false;
-  switchBtn.addEventListener("click", () => applyTheme(switchBtn.dataset.next));
-  const saved = document.documentElement.dataset.theme;
-  applyTheme(THEME_ORDER.includes(saved) ? saved : DEFAULT_THEME);
-} else {
-  applyTheme(DEFAULT_THEME);
-}
-
 document.getElementById("fact-reg").textContent = EVENT.registrationUntil;
 document.getElementById("fact-budget").textContent = EVENT.budget;
 document.getElementById("fact-party").textContent = EVENT.party;

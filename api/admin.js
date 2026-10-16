@@ -40,11 +40,20 @@ module.exports = async (req, res) => {
     const { participants, assign } = await load();
 
     if (req.method === "GET") {
-      const rows = Object.values(participants).map((p) => ({
-        name: p.name,
-        email: p.email,
-        sent: assign[p.email]?.sent ?? null,
-      }));
+      const giverOf = {};
+      Object.entries(assign).forEach(([email, x]) => { giverOf[x.targetEmail] = email; });
+      const rows = Object.values(participants).map((p) => {
+        const a = assign[p.email];
+        return {
+          name: p.name,
+          email: p.email,
+          sent: a?.sent ?? null,
+          number: a?.number ?? null,
+          targetNumber: a?.targetNumber ?? null,
+          targetName: a ? participants[a.targetEmail]?.name ?? "" : "",
+          giverName: a ? participants[giverOf[p.email]]?.name ?? "" : "",
+        };
+      }).sort((x, y) => (x.number ?? 1e9) - (y.number ?? 1e9) || x.name.localeCompare(y.name, "ru"));
       return res.json({
         count: rows.length,
         drawn: Object.keys(assign).length > 0,
